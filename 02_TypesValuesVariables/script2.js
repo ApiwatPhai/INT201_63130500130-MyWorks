@@ -54,6 +54,7 @@ let myObj2 = {
   task: 'grading exam'
 };
 console.log(`${JSON.stringify(myObj)}`);
+//JSON like Java toString
 //The JSON.stringify() method converts a JavaScript object or value to a JSON string
 console.log(`type of myObj is ${typeof myObj}`);
 
