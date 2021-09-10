@@ -1,5 +1,4 @@
 var year = 2021;
-//year = new Date().getFullYear
 switch(year%12){
     case 0 :
         animal="monkey"
