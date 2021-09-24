@@ -1,70 +1,85 @@
-//array เป็น object
-let dice = [1,2,3,4,5,6]
+class Dice {
 
-//สร้าง object ผู้เล่น 2 คน (score ใช้เพื่อการเปรียบเทียบผู้ชนะ)
-let player1 = {name: "player1", score: 0, diceValue: [],p1result :[]}
-let player2 = {name: "player2", score: 0, diceValue: [],p2result :[]}
+    constructor(gameTitle) {
 
-//ใส่จำนวนรอบที่ต้องการเล่น
-console.log(play(3))
-console.log(player1.diceValue)
-console.log(player2.diceValue)
-console.log(player1.p1result)
-console.log(player2.p2result)
+      console.log('constructor is working');
 
-//loop ในการเล่นทุกรอบ จะไปทอยลูกเต๋า และเปรียบเทียบผู้เล่นที่ชนะแต่ละรอบ
-//สุดท้ายคือเทียบว่าใครชนะทั้งเกม
-function play(round){
-    for(let i=0 ; i<round; i++){
-        roll(i)
-        console.log(`--- round ${i+1} ---`)
-        console.log(whoWin(i))
+      this._faceValue = 0;
+
+      if(gameTitle === undefined){
+
+        this._diceName = "Unknown"
+
+      }else{
+
+        this._diceName = gameTitle;
+
+      }
+
     }
-    console.log("The winner is :")
-    console.log(gameWin());
-}
 
-//สุ่มตัวเลขโดยใช้ Math.random() <- เป็นการสุ่มเลขที่จะได้ค่า 0<x<1 เป็นทศนิยม
-//และนำไปคูณด้วย dice.length (คือจำนวนของarray) ออกมาเป็นทศนิยมเหมือนเดิม
-//จึงต้องใช้ Math.floor เพื่อทำให้กลายเป็นเลขจำนวนเต็ม
-function roll(i){
-    player1.diceValue[i] = dice[Math.floor(Math.random() * dice.length)];
-    player2.diceValue[i] = dice[Math.floor(Math.random() * dice.length)];
-    
-}
 
-//เอาค่าลูกเต๋าที่ทอยได้มาเปรียบเทียบกัน แล้ว return String บอกคนชนะ คนแพ้
-// มีการเก็บค่า score เพิ่มครั้งละ 1 เพื่อไปใช้ในการเปรียบเทียบว่าคนที่ชนะมากที่สุด
-// มีการเก็บว่ารอบไหนชนะหรือแพ้ ลงใน player1.p1resultหรือplayer2.p2result
-// ในทุกรอบคือคนไหน
-function whoWin(i){
-    let result = ""
-    if(player1.diceValue[i] > player2.diceValue[i]) {
-        player1.score+=1
-        player1.p1result[i]="Win"
-        player2.p2result[i]="Lose"
-        return result = `${player1.name} : ${player1.diceValue[i]} win!\n${player2.name} : ${player2.diceValue[i]} lose!`
-    } else if (player1.diceValue[i] < player2.diceValue[i]){
-        player2.score+=1
-        player1.p1result[i]="Lose"
-        player2.p2result[i]="Win"
-        return result = `${player1.name} : ${player1.diceValue[i]} lose!\n${player2.name} : ${player2.diceValue[i]} win!`
-    } else {
-        player1.p1result[i]="Draw"
-        player2.p2result[i]="Draw"
-        return result = `${player1.name} : ${player1.diceValue[i]}\n${player2.name} : ${player2.diceValue[i]}\ndraw!`
+
+    roll() {
+
+    this._faceValue = Math.floor(Math.random() * 6) + 1;
+
+    return this._faceValue;
+
     }
-}
 
-//นำค่า score มาเปรียบเทียบว่า ใครชนะในแต่ละรอบมากกว่ากัน
-//และ return string บอกผู้ที่ชนะ
-function gameWin(){
-    let result = ""
-    if(player1.score > player2.score){
-        return result = `${player1.name} win!`
-    } else if(player1.score < player2.score){
-        return result = `${player2.name} win!`
-    } else {
-        return result = `draw!`
+    get faceValue(){
+
+        console.log("getter working")
+
+        return this._faceValue;
+
     }
-}
+
+    set faceValue(faceValue){
+
+        console.log("setter working")
+
+        this._faceValue = faceValue;
+
+
+
+    }
+
+    toString(){
+
+        return `game = ${this._diceName},faceValue = ${this._faceValue}`
+
+    } 
+
+  }
+
+
+
+  //#1
+
+  let dice1 = new Dice("Hilo");
+
+
+
+  console.log(dice1);
+
+  console.log(dice1.roll());
+
+
+
+console.log(dice1.faceValue)
+
+console.log(dice1["faceValue"])
+
+dice1["faceValue"] = 5;
+
+console.log(dice1.toString())
+
+
+
+//   let dice2 = new Dice();
+
+//   console.log(dice2);
+
+//   console.log(dice2.roll());
