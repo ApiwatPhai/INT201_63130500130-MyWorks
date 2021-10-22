@@ -42,6 +42,10 @@ console.log(player2); //?
 
 
 
+
+
+
+
 //#0 variable with single value
 
 let product1 = 'Coke';

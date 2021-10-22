@@ -123,7 +123,6 @@ console.log(arr); //?
 
 
 
-
 let students = [
 
     { id: 1, name: 'Ann' },
